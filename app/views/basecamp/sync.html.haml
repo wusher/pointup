@@ -1,0 +1,12 @@
+%h1 Basecamp#sync
+
+
+%p Find me in app/views/basecamp/sync.html.haml
+%h2 syncing 
+
+:javascript 
+  $(function () {
+    $.post('#{basecamp_sync_path}', function() {
+      window.location.replace("#{root_path}");
+    })
+  });

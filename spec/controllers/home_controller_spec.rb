@@ -37,6 +37,7 @@ describe HomeController do
         it "returns http success for authorized users" do
           user.stub(:credentials?).and_return(true)
           user.stub(:authorized?).and_return(true)
+          user.stub(:sync?).and_return(true)
           get 'index'
           response.should be_success
         end
@@ -53,6 +54,15 @@ describe HomeController do
           get 'index'
           response.should redirect_to(credentials_path)
         end
+
+        it 'redirects users that have note synced with basecamp to sync path' do
+          user.stub(:credentials?).and_return(true)
+          user.stub(:authorized?).and_return(true)
+          user.stub(:sync?).and_return(false)
+          get 'index'
+          response.should redirect_to(basecamp_sync_path)
+
+        end 
       end 
 
     end 

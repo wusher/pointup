@@ -1,5 +1,8 @@
 Pointup::Application.routes.draw do
 
+  get  "basecamp/sync" => "basecamp#sync"
+  post "basecamp/sync" => "basecamp#update"
+
   get "/credentials" => "credentials#edit",   :as => :credentials
   put "/credentials" => "credentials#update", :as => :credentials
   

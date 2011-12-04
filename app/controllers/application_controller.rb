@@ -17,14 +17,13 @@ private
   def authenticate_user!
     return redirect_to signin_path unless current_user 
 
-    if !current_user.authorized? and !current_user.admin?
-      return redirect_to waiting_path
-    end 
-
     if current_user.admin? 
       return redirect_to settings_path unless Settings.set?
     end 
+
+    return redirect_to waiting_path     unless current_user.authorized? or current_user.admin?
     return redirect_to credentials_path unless current_user.credentials?
+    return redirect_to basecamp_sync_path        unless current_user.sync? 
   end 
 
   def current_user
