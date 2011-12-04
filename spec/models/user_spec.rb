@@ -22,4 +22,18 @@ describe User do
       subject.admin?.should be_false
     end 
   end 
+  describe "credentials?" do 
+    it "is true if there is a token" do 
+      subject.basecamp_token = "asdf" 
+      subject.credentials?.should be_true 
+    end 
+    it "is true if there is a username and password" do 
+      subject.basecamp_login = "asdf" 
+      subject.basecamp_password = "asdf" 
+      subject.credentials?.should be_true 
+    end 
+    it "is false if there is nohting set" do 
+      subject.credentials?.should be_false 
+    end 
+  end 
 end
