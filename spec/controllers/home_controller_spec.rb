@@ -51,7 +51,7 @@ describe HomeController do
           user.stub(:authorized?).and_return(true)
           user.stub(:credentials?).and_return(false)
           get 'index'
-          response.should redirect_to(edit_user_path(user))
+          response.should redirect_to(credentials_path)
         end
       end 
 

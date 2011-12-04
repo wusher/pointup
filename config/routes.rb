@@ -6,11 +6,13 @@ Pointup::Application.routes.draw do
   get "/settings" => "settings#edit", :as => :settings
   put "/settings" => "settings#update", :as => :settings
 
-  resources :users do 
+
+  resources :users, :only => [:index, :destroy] do 
     member do 
-      get 'waiting', :as => :waiting
+      put 'authorize'
     end 
   end 
+  get 'waiting' => 'users#waiting', :as => :waiting
 
   #github authorization routes 
   match "/auth/:provider/callback" => "sessions#create"

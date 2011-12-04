@@ -45,6 +45,10 @@ describe CredentialsController do
       user.basecamp_login.should    == userinfo_attributes[:basecamp_login]
       user.basecamp_password.should == userinfo_attributes[:basecamp_password]
     end
+    it 'redirects to the root' do 
+      put :update, :user => userinfo_attributes
+      response.should redirect_to(root_path)
+    end 
 
 
   end

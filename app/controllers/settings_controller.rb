@@ -12,8 +12,8 @@ class SettingsController < ApplicationController
     @setting = Settings.first  || Settings.create!
 
     respond_to do |format|
-      if @setting.update_attributes(params[:setting])
-        format.html { redirect_to settings_path, notice: 'Setting was successfully updated.' }
+      if @setting.update_attributes(params[:settings])
+        format.html { redirect_to root_path, notice: 'Setting was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

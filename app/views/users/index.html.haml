@@ -2,16 +2,33 @@
 
 %table
   %tr
-    %th
-    %th
-    %th
+    %th User 
+    %th Status
+    %th 
 
   - @users.each do |user|
     %tr
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+      %td= user.nickname
+      - if !user.authorized?
+        %td= link_to 'Authorize', authorize_user_path(user), :confirm => 'Are you user?', :remote => true, :method => :put, :class => 'authorize-link'
+      - else 
+        %td X
+      %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :remote => true, :method => :delete, :class => 'delete-link' 
 
-%br
+:javascript
+  $('body').delegate('.delete-link', 'ajax:success', function() {
+    $(this).parents('tr').hide();
+    alert('User successfully deleted.');
+  })
+  $('body').delegate('.delete-link', 'ajax:failure', function() {
+    alert('There was an issue deleting the user');
+  })
 
-= link_to 'New User', new_user_path
+  $('body').delegate('.authorize-link', 'ajax:success', function() {
+    $(this).parents('td').text('X');
+    alert('User successfully authorized');
+  })
+
+  $('body').delegate('.authorize-link', 'ajax:failure', function() {
+    alert('There was an issue deleting the user');
+  })

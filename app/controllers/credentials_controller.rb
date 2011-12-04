@@ -26,7 +26,7 @@ class CredentialsController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to credentials_path, notice: 'Credentials was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Credentials was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
