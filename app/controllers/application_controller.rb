@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
 private
   
+  def authenticate_session!
+    return redirect_to signin_path unless current_user 
+  end 
+
   def authenticate_admin!
     return redirect_to signin_path unless current_user 
     return redirect_to root_path unless current_user.admin?

@@ -1,7 +1,10 @@
 Pointup::Application.routes.draw do
+
+  get "/credentials" => "credentials#edit",   :as => :credentials
+  put "/credentials" => "credentials#update", :as => :credentials
   
-  get "settings" => "settings#edit", :as => :settings
-  put "settings" => "settings#update", :as => :settings
+  get "/settings" => "settings#edit", :as => :settings
+  put "/settings" => "settings#update", :as => :settings
 
   resources :users do 
     member do 
