@@ -33,14 +33,14 @@ describe CredentialsController do
       subject.stub(:current_user).and_return(user)
     end 
     it "updates the token" do
-      put :update, :credentials => token_attributes
+      put :update, :user => token_attributes
       user.basecamp_token.should    == token_attributes[:basecamp_token]
       user.basecamp_login.should    be_nil
       user.basecamp_password.should be_nil
     end
 
     it "updates the login info" do
-      put :update, :credentials => userinfo_attributes
+      put :update, :user => userinfo_attributes
       user.basecamp_token.should    be_nil
       user.basecamp_login.should    == userinfo_attributes[:basecamp_login]
       user.basecamp_password.should == userinfo_attributes[:basecamp_password]
