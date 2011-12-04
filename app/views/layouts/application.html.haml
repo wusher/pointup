@@ -1,0 +1,21 @@
+!!!
+%html 
+  %head
+    %title Pointup
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags 
+  %body
+    .container_16
+      #header
+        %h1 Pointup
+        #user_nav
+          - if current_user 
+            = current_user.nickname 
+            = link_to "Sign Out", signout_path 
+          - else 
+            = link_to "Sign In", "auth/github"
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}", :class => "flash"
+      #body
+        = yield 

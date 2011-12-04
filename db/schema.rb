@@ -11,6 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20111204033637) do
+
+  create_table "users", :force => true do |t|
+    t.string   "uid"
+    t.string   "nickname"
+    t.string   "basecamp_token"
+    t.string   "basecamp_login"
+    t.string   "basecamp_password"
+    t.boolean  "synced"
+    t.boolean  "admin"
+    t.boolean  "authorized"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

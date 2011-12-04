@@ -1,6 +1,9 @@
 
-Given /^there are (\d+) users$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given /^there are (\d+) users$/ do |count|
+  User.all.each { |x| x.destroy }
+  (0..count).each do 
+    User.create!
+  end 
 end
 
 When /^I visit the sign in page$/ do
