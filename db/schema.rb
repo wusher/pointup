@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204081059) do
+ActiveRecord::Schema.define(:version => 20111204215104) do
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.integer  "basecamp_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.integer  "basecamp_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.string   "basecamp_url"
@@ -19,12 +39,25 @@ ActiveRecord::Schema.define(:version => 20111204081059) do
     t.datetime "updated_at"
   end
 
+  create_table "todos", :force => true do |t|
+    t.string   "name"
+    t.integer  "basecamp_id"
+    t.integer  "points"
+    t.boolean  "completed"
+    t.integer  "list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "todos", ["list_id"], :name => "index_todos_on_list_id"
+
   create_table "users", :force => true do |t|
     t.string   "uid"
     t.string   "nickname"
     t.string   "basecamp_token"
     t.string   "basecamp_login"
     t.string   "basecamp_password"
+    t.integer  "basecamp_id"
     t.boolean  "synced"
     t.boolean  "admin"
     t.boolean  "authorized"

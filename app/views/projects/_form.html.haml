@@ -1,0 +1,10 @@
+= simple_form_for(@project) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :basecamp_id
+    = f.association :user
+
+  .actions
+    = f.button :submit

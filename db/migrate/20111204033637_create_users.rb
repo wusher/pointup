@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :basecamp_token
       t.string :basecamp_login
       t.string :basecamp_password
+      t.integer :basecamp_id
       t.boolean :synced
       t.boolean :admin
       t.boolean :authorized

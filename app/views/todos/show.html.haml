@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @todo.name
+%p
+  %b Basecamp:
+  = @todo.basecamp_id
+%p
+  %b Points:
+  = @todo.points
+%p
+  %b Completed:
+  = @todo.completed
+%p
+  %b List:
+  = @todo.list
+
+= link_to 'Edit', edit_todo_path(@todo)
+\|
+= link_to 'Back', todos_path

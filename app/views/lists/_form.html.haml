@@ -1,0 +1,10 @@
+= simple_form_for(@list) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :basecamp_id
+    = f.association :project
+
+  .actions
+    = f.button :submit

@@ -1,0 +1,12 @@
+= simple_form_for(@todo) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :basecamp_id
+    = f.input :points
+    = f.input :completed
+    = f.association :list
+
+  .actions
+    = f.button :submit

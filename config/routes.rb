@@ -1,5 +1,11 @@
 Pointup::Application.routes.draw do
 
+  resources :projects, :only => [ :index, :show] do 
+    resources :lists,  :only => [ :index, :show ] do 
+      resources :todos, :only => [:index, :show, :edit, :update ] 
+    end 
+  end 
+
   get  "basecamp/sync" => "basecamp#sync"
   post "basecamp/sync" => "basecamp#update"
 
