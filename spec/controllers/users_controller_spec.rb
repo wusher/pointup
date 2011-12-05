@@ -20,6 +20,9 @@ require 'spec_helper'
 
 describe UsersController do
 
+  before :each do 
+    subject.stub(:authenticate_admin!).and_return(true)
+  end 
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.
