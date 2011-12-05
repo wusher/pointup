@@ -17,11 +17,10 @@ class Pointup.Views.Todos.TodoView extends Backbone.View
     $(@el).html(@template(@model.toJSON() ))
     return this
   
-  exitEdit: -> 
+  saveEdit: -> 
     @model.save( { points: $('input', @el).first().val() })
     @render()
 
 
   updateOnEnter: (e) ->
-    @exitEdit() if e.keyCode == 13 #enter
-    @render()   if e.keyCode == 27 #escape
+    @saveEdit() if e.keyCode == 13 #enter

@@ -3,6 +3,9 @@ require "spec_helper"
 describe TodosController do
   describe "routing" do
 
+    it "routes to #summary" do 
+      get("/summary").should route_to("todos#summary")
+    end 
     it "routes to #index" do
       get("/projects/1/lists/2/todos").should route_to("todos#index", :project_id => "1",
                                                                       :list_id => "2")

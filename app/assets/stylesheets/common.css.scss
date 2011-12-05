@@ -1,0 +1,61 @@
+@mixin border_radius($values) {
+  -webkit-border-radius: $values ;
+  -moz-border-radius: $values ;
+  border-radius: $values ;
+}
+@mixin box_shadow($values) {
+  -webkit-box-shadow: $values;
+  -moz-box-shadow: $values;
+  box-shadow: $values;
+}
+
+
+#header {
+  color:#eee;
+  background-color:#222;
+  padding: 15px;
+  margin-bottom:15px;
+  @include border_radius(0px 0px 5px 5px);
+  @include box_shadow(0px 2px 3px #222 );
+
+  h1 {
+
+    font-size:1.8em;
+  }
+  a {
+    text-decoration:none;
+    color:#222;
+    background-color:#eee;
+    padding:5px 5px;
+    @include border_radius(5px);
+    @include box_shadow(0px 0px 5px #222 inset);
+    &:hover {
+      color:#000;
+      background-color:#fff;
+      @include box_shadow(0px 0px 2px #222 inset);
+    }
+  }
+  a.waiting {
+    padding-left: 20px;
+    background-image:url('/assets/ajax-loader.gif');
+    background-position:left center;
+    background-repeat:no-repeat;
+  }
+}
+#user_nav{ 
+  float: right;
+}
+
+.big {
+  font-size:1.8em;
+}
+
+label {
+  display:block;
+}
+.image {
+  @include border_radius(2px);
+  @include box_shadow(0px 0px 5px #222);
+  display:block;
+  margin:  0 auto;
+}

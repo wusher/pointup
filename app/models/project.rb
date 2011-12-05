@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
 
-  has_many :lists 
+  has_many :lists, :dependent => :destroy 
 
    def sync!(data)
     if  self.name != data.name

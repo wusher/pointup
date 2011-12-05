@@ -35,7 +35,7 @@ module Simplecamp
 
 private 
     def establish_connection
-      Basecamp.establish_connection! @url, @login, @password, true 
+      Basecamp.establish_connection! @url, @login, @password, true
     end 
   end 
 end 

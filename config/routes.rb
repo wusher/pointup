@@ -5,9 +5,10 @@ Pointup::Application.routes.draw do
       resources :todos, :only => [:index, :show, :edit, :update ] 
     end 
   end 
+  get "/summary" => "todos#summary", :as => :summary
 
-  get  "basecamp/sync" => "basecamp#sync"
-  post "basecamp/sync" => "basecamp#update"
+  get  "/basecamp/sync" => "basecamp#sync"
+  post "/basecamp/sync" => "basecamp#update"
 
   get "/credentials" => "credentials#edit",   :as => :credentials
   put "/credentials" => "credentials#update", :as => :credentials
@@ -29,5 +30,6 @@ Pointup::Application.routes.draw do
   match "/signin"  => "sessions#new", :as => :signin
 
   #root 
-  root :to => 'home#index'
+  #root :to => 'home#index'
+  root :to => 'projects#index'
 end 
