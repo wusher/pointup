@@ -29,6 +29,7 @@ Pointup::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout 
   match "/signin"  => "sessions#new", :as => :signin
 
+  match "home/index" => "home#index"
   #root 
   #root :to => 'home#index'
   root :to => 'projects#index'

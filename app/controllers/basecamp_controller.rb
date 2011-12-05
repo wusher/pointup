@@ -14,6 +14,11 @@ class BasecampController < ApplicationController
       format.html { redirect_to root_path, :notice => 'Successfully synced' }
       format.json { head :ok }
     end 
+  rescue Exception
+    respond_to do |format|
+      format.html { redirect_to root_path, :alert => 'Error occurred while syncing' }
+      format.json { head :error }
+    end 
   end 
 
 private 
