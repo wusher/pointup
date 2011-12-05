@@ -2,7 +2,7 @@
 module Simplecamp
   class Service
     def initialize(url, user)
-      @url = url.gsub /http:\/\//, ''
+      @url = url.gsub /https?:\/\//, ''
       if !user.basecamp_token.blank?
         @login    = user.basecamp_token 
         @password = 'X'

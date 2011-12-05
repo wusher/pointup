@@ -5,7 +5,6 @@ Pointup::Application.routes.draw do
       resources :todos, :only => [:index, :show, :edit, :update ] 
     end 
   end 
-  get "/summary" => "todos#summary", :as => :summary
 
   get  "/basecamp/sync" => "basecamp#sync"
   post "/basecamp/sync" => "basecamp#update"
