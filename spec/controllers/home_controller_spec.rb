@@ -58,7 +58,7 @@ describe HomeController do
         it 'redirects users that have note synced with basecamp to sync path' do
           user.stub(:credentials?).and_return(true)
           user.stub(:authorized?).and_return(true)
-          user.stub(:sync?).and_return(false)
+          user.stub(:synced?).and_return(false)
           get 'index'
           response.should redirect_to(basecamp_sync_path)
 

@@ -10,8 +10,9 @@ class Project < ActiveRecord::Base
     end 
   end 
 
-  def self.create_from_basecamp(data)
+  def self.create_from_basecamp(data, user)
     create! do |p|
+      p.user = user
       p.basecamp_id = data.id 
       p.name = data.name 
     end 

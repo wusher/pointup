@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_protected :admin
   before_create :set_admin
+  has_many :projects 
 
   def credentials?
     !self.basecamp_token.blank? or (!self.basecamp_login.blank? and !self.basecamp_password.blank?)

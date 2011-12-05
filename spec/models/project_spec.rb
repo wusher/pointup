@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Project do
+  let(:user) { User.create }
 
   describe "create_from_basecamp " do 
 
@@ -9,7 +10,8 @@ describe Project do
       data.stub(:id).and_return(42)
       data.stub(:name).and_return('life')
 
-      p = Project.create_from_basecamp(data)
+      p = Project.create_from_basecamp(data, user)
+      p.user.should == user
       p.name.should == 'life'
       p.basecamp_id.should == 42
     end 
