@@ -1,0 +1,25 @@
+<h1>Edit todo</h1>
+
+<form id="edit-todo" name="todo">
+  <div class="field">
+    <label for="name"> name:</label>
+    <input type="text" name="name" id="name" value=<%= name %> >
+  </div>
+
+  <div class="field">
+    <label for="completed"> completed:</label>
+    <input type="text" name="completed" id="completed" value=<%= completed %> >
+  </div>
+
+  <div class="field">
+    <label for="points"> points:</label>
+    <input type="text" name="points" id="points" value=<%= points %> >
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Update Todo" />
+  </div>
+
+</form>
+
+<a href="#/index">Back</a>

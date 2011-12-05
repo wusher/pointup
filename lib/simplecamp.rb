@@ -28,7 +28,6 @@ module Simplecamp
       todos = Basecamp::TodoItem.find(:all, :params => { :todo_list_id => list_id } ) 
                                                  #:responsible_party_id => user_id } )
       todos.reject! do |x| 
-        binding.pry if x.content == 'may'
         !x.attributes.has_key?("responsible_party_id") or  x.responsible_party_id != user_id 
       end 
       todos 
