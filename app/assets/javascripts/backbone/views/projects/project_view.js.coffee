@@ -4,15 +4,13 @@ class Pointup.Views.Projects.ProjectView extends Backbone.View
   template: JST["backbone/templates/projects/project"]
 
   events:
-    "click .destroy" : "destroy"
+    "click " : "select"
 
-  tagName: "tr"
+  tagName: "li"
 
-  destroy: () ->
-    @model.destroy()
-    this.remove()
-
-    return false
+  select: () ->
+    $(@el).siblings().removeClass('selected')
+    $(@el).addClass('selected')
 
   render: ->
     $(@el).html(@template(@model.toJSON() ))

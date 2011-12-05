@@ -1,31 +1,22 @@
 class Pointup.Routers.TodosRouter extends Backbone.Router
   initialize: (options) ->
     @todos = new Pointup.Collections.TodosCollection()
-    @todos.reset options.todos
+    @todos.reset 
 
   routes:
-    "/new"      : "newTodo"
-    "/index"    : "index"
-    "/:id/edit" : "edit"
-    "/:id"      : "show"
-    ".*"        : "index"
+    "/:project_id/lists/:list_id"    : "index"
 
-  newTodo: ->
-    @view = new Pointup.Views.Todos.NewView(collection: @todos)
-    $("#todos").html(@view.render().el)
 
-  index: ->
+  index: (project_id, list_id) ->
+    window.list_router.ensure_index(project_id)
+    @todos.reset()
+    @todos.url = window.list_router.lists.url + "/" + list_id + "/todos"
+    @todos.fetch()
+
     @view = new Pointup.Views.Todos.IndexView(todos: @todos)
     $("#todos").html(@view.render().el)
 
-  show: (id) ->
-    todo = @todos.get(id)
 
-    @view = new Pointup.Views.Todos.ShowView(model: todo)
-    $("#todos").html(@view.render().el)
+  clear: -> 
+    $("#todos").html('Please select a list')
 
-  edit: (id) ->
-    todo = @todos.get(id)
-
-    @view = new Pointup.Views.Todos.EditView(model: todo)
-    $("#todos").html(@view.render().el)

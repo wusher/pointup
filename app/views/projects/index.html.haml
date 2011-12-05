@@ -1,5 +1,28 @@
-%h1 Listing projects
+%h1 Listing projects backbone style 
 
-backbone style 
+%br 
 
-#projects 
+.grid_8
+  #projects.container
+    %p Loading...
+.grid_8
+  #lists.container
+    %p please select a project 
+%br
+.clear 
+%br
+.grid_16
+  #todos.container
+    %p please select a list 
+
+
+
+:javascript
+  $(function() {
+    // Blog is the app name
+    window.todo_router = new Pointup.Routers.TodosRouter();
+    window.list_router = new Pointup.Routers.ListsRouter();
+    window.project_router = new Pointup.Routers.ProjectsRouter({ projects: #{@projects.to_json.html_safe} });
+    Backbone.history.start();
+    window.project_router.index();
+  });

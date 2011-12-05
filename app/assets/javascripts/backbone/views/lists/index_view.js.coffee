@@ -11,7 +11,7 @@ class Pointup.Views.Lists.IndexView extends Backbone.View
 
   addOne: (list) =>
     view = new Pointup.Views.Lists.ListView({model : list})
-    @$("tbody").append(view.render().el)
+    @$("ul").append(view.render().el)
 
   render: =>
     $(@el).html(@template(lists: @options.lists.toJSON() ))

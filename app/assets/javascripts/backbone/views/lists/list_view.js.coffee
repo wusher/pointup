@@ -4,15 +4,14 @@ class Pointup.Views.Lists.ListView extends Backbone.View
   template: JST["backbone/templates/lists/list"]
 
   events:
-    "click .destroy" : "destroy"
+    "click" : "select"
 
-  tagName: "tr"
+  tagName: "li"
 
-  destroy: () ->
-    @model.destroy()
-    this.remove()
+  select: () ->
+    $(@el).siblings().removeClass('selected')
+    $(@el).addClass('selected')
 
-    return false
 
   render: ->
     $(@el).html(@template(@model.toJSON() ))

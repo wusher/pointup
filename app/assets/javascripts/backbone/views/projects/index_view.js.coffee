@@ -11,7 +11,7 @@ class Pointup.Views.Projects.IndexView extends Backbone.View
 
   addOne: (project) =>
     view = new Pointup.Views.Projects.ProjectView({model : project})
-    @$("tbody").append(view.render().el)
+    @$('ul').append(view.render().el)
 
   render: =>
     $(@el).html(@template(projects: @options.projects.toJSON() ))
