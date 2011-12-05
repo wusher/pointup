@@ -37,7 +37,7 @@ describe HomeController do
         it "returns http success for authorized users" do
           user.stub(:credentials?).and_return(true)
           user.stub(:authorized?).and_return(true)
-          user.stub(:sync?).and_return(true)
+          user.stub(:synced?).and_return(true)
           get 'index'
           response.should be_success
         end

@@ -7,6 +7,7 @@
 :javascript 
   $(function () {
     $.post('#{basecamp_sync_path}', function() {
+      alert('synced');
       window.location.replace("#{root_path}");
     })
   });

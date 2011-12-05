@@ -2,7 +2,7 @@
 module Simplecamp
   class Service
     def initialize(url, user)
-      @url = url
+      @url = url.gsub /http:\/\//, ''
       if !user.basecamp_token.blank?
         @login    = user.basecamp_token 
         @password = 'X'
@@ -12,7 +12,8 @@ module Simplecamp
       end 
     end 
     def get_user_id
-      Basecamp::Person.me.tap { |x| binding.pry }.user_id
+      establish_connection
+      Basecamp::Person.me.id
     end 
     def get_projects()
       establish_connection
@@ -24,8 +25,13 @@ module Simplecamp
     end 
     def get_todos(list_id, user_id)
       establish_connection
-      Basecamp::TodoItem.find(:all, :params => { :todo_list_id => list_id,
-                                                 :assigned_to => user_id } )
+      todos = Basecamp::TodoItem.find(:all, :params => { :todo_list_id => list_id } ) 
+                                                 #:responsible_party_id => user_id } )
+      todos.reject! do |x| 
+        binding.pry if x.content == 'may'
+        !x.attributes.has_key?("responsible_party_id") or  x.responsible_party_id != user_id 
+      end 
+      todos 
     end 
 
 private 

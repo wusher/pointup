@@ -1,6 +1,6 @@
 = simple_form_for(@setting, :url => { :controller => :settings, :action => :update }) do |f|
   = f.error_notification
   .inputs
-    = f.input :basecamp_url
+    = f.input :basecamp_url, :as => :string 
   .actions
     = f.button :submit
